@@ -2,18 +2,20 @@ version: '3.8'
 
 services:
   starships:
-    # image: ghcr.io/steob92/starships_container:latest
-    image: gmraz:starships
+    # image: ghcr.io/georgiamraz/starships_container:latest
+    image: obriens/starships
     container_name: starships_container
     # Set the environmental variable to set the user permission
     environment:
-      - USER_ID="501"
+      - USER_ID=1000
+      - GROUP_ID=1000
 
     ports:
       - "8091:8091" # Map container port 8888 to host port 8888 for jupyter lab
     volumes:
-      - /Users/ronaldmraz/Desktop/STARSHIPS_workshop:/home/jovyan/data # Local data mapping
-      - /Users/ronaldmraz/Desktop/SS_fakedata:/home/jovyan/starships_data # Location of the pRT_input_data_path directory
+      - ./data:/home/jovyan/data # Local data mapping
+      - ./data:/home/jovyan/starships_data # Location of the pRT_input_data_path directory
+      - ./notebooks:/home/jovyan/notebooks # Location of the analysis notebooks
     
     command: jupyter notebook --allow-root  --ip=0.0.0.0 --port=8091 --no-browser
   

@@ -68,4 +68,5 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 ENV pRT_input_data_path=/home/jovyan/starships_data
 
 EXPOSE 8888
+WORKDIR /home/jovyan/
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
